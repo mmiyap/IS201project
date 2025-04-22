@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movie Recommender</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    h1 {
+      color: #cc3366;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    label, select, button {
+      margin-top: 10px;
+      width: 80%;
+    }
+
+    select {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background: linear-gradient(to right, #ff758c, #ff7eb3);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #ff5e62, #ff9966);
+    }
+
+    #result {
+      margin-top: 25px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 Movie Recommender</h1>
+
+    <form id="movieForm">
+      <label for="genre">Choose a genre:</label>
+      <select id="genre">
+        <option value="action">Action</option>
+        <option value="comedy">Comedy</option>
+        <option value="drama">Drama</option>
+        <option value="sci-fi">Sci-Fi</option>
+        <option value="romance">Romance</option>
+        <option value="horror">Horror</option>
+        <option value="animation">Animation</option>
+      </select>
+
+      <label for="mood">What's your mood?</label>
+      <select id="mood">
+        <option value="happy">Happy</option>
+        <option value="sad">Sad</option>
+        <option value="adventurous">Adventurous</option>
+        <option value="chill">Chill</option>
+        <option value="inspired">Inspired</option>
+        <option value="scared">Scared</option>
+      </select>
+
+      <label for="popularity">Do you want something:</label>
+      <select id="popularity">
+        <option value="popular">Popular</option>
+        <option value="underrated">Underrated</option>
+      </select>
+
+      <button type="submit">Get Recommendation</button>
+    </form>
+
+    <div id="result"></div>
+    <button onclick="window.location.href='scratch.html'">
+        ⬅️ Back to Main Page
+      </button>
+      
+  </div>
+
+  <script>
+    const defaultMovie = "Inception";
+
+    const recommendations = {
+      action: {
+        happy: {
+          popular: "Guardians of the Galaxy",
+          underrated: "The Nice Guys"
+        },
+        sad: {
+          popular: "Logan",
+          underrated: "Children of Men"
+        },
+        adventurous: {
+          popular: "Mad Max: Fury Road",
+          underrated: "Edge of Tomorrow"
+        },
+        chill: {
+          popular: "Ant-Man",
+          underrated: "Real Steel"
+        },
+        inspired: {
+          popular: "The Dark Knight",
+          underrated: "Warrior"
+        },
+        scared: {
+          popular: "World War Z",
+          underrated: "28 Days Later"
+        }
+      },
+      comedy: {
+        happy: {
+          popular: "Superbad",
+          underrated: "The Way Way Back"
+        },
+        sad: {
+          popular: "The Truman Show",
+          underrated: "Lars and the Real Girl"
+        },
+        adventurous: {
+          popular: "Jumanji: Welcome to the Jungle",
+          underrated: "Hunt for the Wilderpeople"
+        },
+        chill: {
+          popular: "Ferris Bueller's Day Off",
+          underrated: "Sing Street"
+        },
+        inspired: {
+          popular: "The Intern",
+          underrated: "Chef"
+        },
+        scared: {
+          popular: "Shaun of the Dead",
+          underrated: "Tucker and Dale vs. Evil"
+        }
+      },
+      drama: {
+        happy: {
+          popular: "Forrest Gump",
+          underrated: "The Peanut Butter Falcon"
+        },
+        sad: {
+          popular: "The Pursuit of Happyness",
+          underrated: "Manchester by the Sea"
+        },
+        adventurous: {
+          popular: "Slumdog Millionaire",
+          underrated: "Into the Wild"
+        },
+        chill: {
+          popular: "The Secret Life of Walter Mitty",
+          underrated: "Paterson"
+        },
+        inspired: {
+          popular: "A Beautiful Mind",
+          underrated: "The Theory of Everything"
+        },
+        scared: {
+          popular: "Black Swan",
+          underrated: "Prisoners"
+        }
+      },
+      "sci-fi": {
+        happy: {
+          popular: "Back to the Future",
+          underrated: "Safety Not Guaranteed"
+        },
+        sad: {
+          popular: "Interstellar",
+          underrated: "Ex Machina"
+        },
+        adventurous: {
+          popular: "Star Wars: A New Hope",
+          underrated: "Predestination"
+        },
+        chill: {
+          popular: "Her",
+          underrated: "Coherence"
+        },
+        inspired: {
+          popular: "The Martian",
+          underrated: "Arrival"
+        },
+        scared: {
+          popular: "A Quiet Place",
+          underrated: "Annihilation"
+        }
+      },
+      romance: {
+        happy: {
+          popular: "Crazy Rich Asians",
+          underrated: "Love, Rosie"
+        },
+        sad: {
+          popular: "The Fault in Our Stars",
+          underrated: "Blue Valentine"
+        },
+        adventurous: {
+          popular: "Titanic",
+          underrated: "Before Sunrise"
+        },
+        chill: {
+          popular: "To All the Boys I've Loved Before",
+          underrated: "Begin Again"
+        },
+        inspired: {
+          popular: "La La Land",
+          underrated: "About Time"
+        },
+        scared: {
+          popular: "Twilight",
+          underrated: "Warm Bodies"
+        }
+      },
+      animation: {
+        happy: {
+          popular: "Inside Out",
+          underrated: "The Mitchells vs. The Machines"
+        },
+        sad: {
+          popular: "Up",
+          underrated: "Wolfwalkers"
+        },
+        adventurous: {
+          popular: "How to Train Your Dragon",
+          underrated: "Treasure Planet"
+        },
+        chill: {
+          popular: "My Neighbor Totoro",
+          underrated: "Song of the Sea"
+        },
+        inspired: {
+          popular: "Coco",
+          underrated: "Ernest & Celestine"
+        },
+        scared: {
+          popular: "Coraline",
+          underrated: "Monster House"
+        }
+      },
+      horror: {
+        happy: {
+          popular: "Happy Death Day",
+          underrated: "Freaky"
+        },
+        sad: {
+          popular: "The Babadook",
+          underrated: "The Orphanage"
+        },
+        adventurous: {
+          popular: "Get Out",
+          underrated: "The Descent"
+        },
+        chill: {
+          popular: "The Others",
+          underrated: "The Invitation"
+        },
+        inspired: {
+          popular: "A Quiet Place",
+          underrated: "It Follows"
+        },
+        scared: {
+          popular: "The Conjuring",
+          underrated: "Hereditary"
+        }
+      }
+    };
+
+    document.getElementById("movieForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const genre = document.getElementById("genre").value;
+      const mood = document.getElementById("mood").value;
+      const popularity = document.getElementById("popularity").value;
+
+      let movie = defaultMovie;
+
+      try {
+        movie = recommendations[genre][mood][popularity] || defaultMovie;
+      } catch (e) {
+        movie = defaultMovie;
+      }
+
+      document.getElementById("result").textContent = `We recommend: ${movie}`;
+    });
+  </script>
+</body>
+</html>

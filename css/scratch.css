@@ -1,0 +1,105 @@
+.common{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.header{
+    background-color: rgb(243, 72, 72);
+    color: rgb(255, 255, 255);
+    height: 100px;
+    line-height: 100px;
+}
+
+nav{
+    background-color: rgb(134, 164, 249);
+    padding: 10px;
+    overflow: hidden;
+}
+
+nav a{
+    color: #ffffff;
+    text-decoration: none;
+    padding: 20px;
+    font-weight: bold;
+
+}
+
+nav a:hover{
+    background-color: #7487da;
+}
+p{
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.emphasizedText{
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(16, 21, 131);
+}
+
+body{
+    background-color: rgb(247, 245, 238);
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    border: 3px solid rgb(4, 4, 109);
+    margin: 25px;
+    padding: 18px;
+}
+
+.centered-list{
+    padding-left: 0;
+    list-style-position: outside;
+    margin: 0 auto;
+    display: table;
+    text-align: left;
+}
+
+.footer{
+    position: fixed;
+    background-color: black;
+    color:white;
+    bottom:0px;
+    left: 5px;
+    right: 5px;
+    height: 25px;
+    line-height: 25px;
+}
+
+.travel-img {
+    display: block;
+    margin: 10px auto;
+  }
+
+  .tableau-wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+  
+  .tableau-wrapper iframe,
+  .tableau-wrapper object {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: none;
+  }
+  
+  .tableau-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .tableau-center .tableauPlaceholder,
+  .tableau-center .tableauViz,
+  .tableau-center iframe,
+  .tableau-center object {
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+  }
+  
